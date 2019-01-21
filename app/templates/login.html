@@ -5,13 +5,18 @@
 {% endblock %}
 
 {% block main %}
-    <div class=" page-title ">
+
+
         {% for message in get_flashed_messages() %}
-            <div class="alert alert-warning">
+            <div class="alert alert-warning alert-dismissable" align="center">
+            <button type="button" class="close" data-dismiss="alert"
+                    aria-hidden="true">
+                &times;
+            </button>
                 {{ message }}
             </div>
         {% endfor %}
-    </div>
+
     <h3 class="page-title">登录</h3>
     <form action="" method="POST">
     {{ form.hidden_tag() }}

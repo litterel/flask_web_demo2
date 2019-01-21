@@ -14,57 +14,59 @@
             </div>
         {% endfor %}
     </div>
-<div class="table-responsive">
-    <table class="table table-striped">
-        <caption align="center">用户申请</caption>
-        <thead>
-        <tr>
-            <th class="active">学号</th>
-            <th class="active">姓名</th>
-            <th class='active'>备注</th>
-            <th class='active'>操作</th>
-        </tr>
-        </thead>
-        <tbody>
-        {% for preuser in preusers %}
+    <div class="table-responsive">
+        <table class="table table-hover">
+            <caption align="center">用户申请</caption>
+            <thead>
             <tr>
-                <td>{{ preuser.studentid }}</td>
-                <td>{{ preuser.username }}</td>
-                <td>{{ preuser.description }}</td>
-                <td>
-                    <a href="{{ url_for('add_user',id=preuser.id) }}" class="btn btn-success" role="button">同意申请</a>
-                </td>
+                <th class="active">学号</th>
+                <th class="active">姓名</th>
+                <th class='active'>备注</th>
+                <th class='active'>操作</th>
             </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+            </thead>
+            <tbody>
+            {% for preuser in preusers %}
+                <tr>
+                    <td>{{ preuser.studentid }}</td>
+                    <td>{{ preuser.username }}</td>
+                    <td>{{ preuser.description }}</td>
+                    <td>
+                        <a href="{{ url_for('add_user',id=preuser.id) }}" class="btn btn-success" role="button"><span
+                                class="glyphicon glyphicon-plus-sign"></span> 同意申请</a>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
 
 
-    <table class="table table-striped">
-        <caption align="center">已注册用户</caption>
-        <thead>
-        <tr>
-            <th class="active">学号</th>
-            <th class="active">姓名</th>
-            <th class='active'>备注</th>
-            <th class='active'>操作</th>
-        </tr>
-        </thead>
-        <tbody>
-        {% for user in users %}
+        <table class="table table-hover">
+            <caption align="center">已注册用户</caption>
+            <thead>
             <tr>
-                <td>{{ user.studentid }}</td>
-                <td>{{ user.username }}</td>
-                <td>{{ user.description }}</td>
-                <td>
-                    <a href="{{ url_for('delete_user',id=user.id) }}" class="btn btn-danger" role="button">删除用户</a>
-                </td>
+                <th class="active">学号</th>
+                <th class="active">姓名</th>
+                <th class='active'>备注</th>
+                <th class='active'>操作</th>
             </tr>
-        {% endfor %}
+            </thead>
+            <tbody>
+            {% for user in users %}
+                <tr>
+                    <td>{{ user.studentid }}</td>
+                    <td>{{ user.username }}</td>
+                    <td>{{ user.description }}</td>
+                    <td>
+                        <a href="{{ url_for('delete_user',id=user.id) }}" class="btn btn-danger" role="button"><span
+                                class="glyphicon glyphicon-trash"></span> 删除用户</a>
+                    </td>
+                </tr>
+            {% endfor %}
 
-        </tbody>
-    </table>
-</div>
+            </tbody>
+        </table>
+    </div>
 {% endblock %}
 
 
