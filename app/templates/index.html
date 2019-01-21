@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block title %}首页{% endblock %}
+
+{% block head %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}">
+{% endblock %}
+
+{% block main %}
+    <div class=" page-title ">
+        {% for message in get_flashed_messages() %}
+            <div class="alert alert-warning">
+                {{ message }}
+            </div>
+        {% endfor %}
+    </div>
+    <ul>
+        {% for sample in samples %}
+            <li>
+                <div class="avatar-group">
+                    <img src="{{ url_for('static', filename='images/qingwalogo.jpg') }}"
+                         alt="" class="avatar">
+                </div>
+                <div class="sample-group">
+                    <p class="sample-name"><a href="{{ url_for('detail',sample_id=sample.id)
+                            }}">{{ sample.name }}</a></p>
+                    <p class="sample-detail">{{ sample.detail }}</p>
+                    <div class="sample-info">
+                        <span class="sample-author">{{ sample.author.username }}</span>
+                        <span class="sample-time">{{ sample.create_time }}</span>
+                    </div>
+                </div>
+            </li>
+        {% endfor %}
+    </ul>
+{% endblock %}

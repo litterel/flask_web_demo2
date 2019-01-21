@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+
+{% block title %}详情-{% endblock %}
+
+{% block head %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/detail.css') }}">
+
+{% endblock %}
+{% block main %}
+    <h3 class="page-title">{{ sample.name }}</h3>
+    <p class="sample-info">
+        <span>作者： {{ sample.author.username }}</span>
+        <span>时间： {{ sample.create_time }}</span>
+    </p>
+    <hr>
+    <p class="sample-detail">{{ sample.detail }}</p>
+    <hr>
+    <h4>实验结果</h4>
+    <form action="{{ url_for('add_exp') }}" method="post">
+        <div class='form-container'>
+            <div class="form-group">
+                <textarea name="exp_result" type="text" class="from-control" placeholder="请填写实验结果"></textarea>
+                <input type="hidden" name="sample_id" value="{{ sample.id }}">
+            </div>
+
+        <div class="form-group" style="text-align: right;">
+            <button class="btn btn-primary">立即发布</button>
+        </div>
+</div>
+    </form>
+    <div class=" page-title ">
+        {% for message in get_flashed_messages() %}
+            <div class="alert alert-warning">
+                {{ message }}
+            </div>
+        {% endfor %}
+    </div>
+    <ul class="exp-list">
+        {% for exp in sample.exp %}
+            <li>
+                <div class="user-info">
+                    <img src="{{ url_for('static', filename='images/qingwalogo.jpg') }}" alt=""
+                         class="avatar">
+                    <span class="username">{{ exp.author.username }}</span>
+                    <span class="create-time">{{ exp.create_time }}</span>
+                </div>
+                <p class="exp-result">{{ exp.result }}</p>
+                <a href="{{ url_for('delete_exp', id=exp.id) }}" class="btn btn-danger" role="button">删除</a>
+            </li>
+        {% endfor %}
+    </ul>
+
+{% endblock %}

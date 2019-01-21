@@ -5,7 +5,7 @@ DEBUG = True
 
 SECRET_KEY = os.urandom(24)
 
-SQLALCHEMY_DATABASE_URI = 'mysql://root:root@localhost/db_demo8'
+SQLALCHEMY_DATABASE_URI = 'mysql+pymysql://root:chaoyue@localhost/test_bbs'
 SQLALCHEMY_TRACK_MODIFICATIONS = True
 
 
